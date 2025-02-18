@@ -1,0 +1,33 @@
+networks:
+  umoja_network:
+    driver: bridge
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: umoja_user
+      POSTGRES_PASSWORD: Umoja@2025
+      POSTGRES_DB: umoja_db
+    ports:
+      - "5432:5432"
+    networks:
+      - umoja_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umoja_user -d umoja_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgres://umoja_user:Umoja%402025@db:5432/umoja_db
+      JWT_SECRET: supersecretkey
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - umoja_network
