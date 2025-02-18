@@ -1,5 +1,6 @@
 # AWS Lambda, API Gateway, S3, RDS, and IAM Setup Guide
-This guide provides step-by-step instructions to set up an AWS environment comprising AWS Lambda, API Gateway, S3, RDS, and IAM roles. The objective is to create a REST API that accepts a JSON payload and returns a personalized greeting, configure an S3 bucket for static file storage, deploy and secure an RDS PostgreSQL database, and establish IAM roles for security.
+
+### This guide provides step-by-step instructions to set up an AWS environment comprising AWS Lambda, API Gateway, S3, RDS, and IAM roles. The objective is to create a REST API that accepts a JSON payload and returns a personalized greeting, configure an S3 bucket for static file storage, deploy and secure an RDS PostgreSQL database, and establish IAM roles for security.
 
 
 1. Setting Up AWS Lambda and API Gateway
@@ -17,9 +18,6 @@ Function Name: Enter a name, e.g., UmojaLambdaFunction.
 Runtime: Select Python 3.13.
 Function Code: In the code editor, paste the following code:
 
-python
-Copy
-Edit
 import json
 
 def lambda_handler(event, context):
